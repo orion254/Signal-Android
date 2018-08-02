@@ -82,7 +82,7 @@ public class BitmapUtil {
           scaledBitmap.compress(CompressFormat.JPEG, quality, baos);
           bytes = baos.toByteArray();
 
-          Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
+          Log.d(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
           if (quality == MIN_COMPRESSION_QUALITY) break;
 
           int nextQuality = (int)Math.floor(quality * Math.sqrt((double)maxImageSize / bytes.length));
@@ -95,7 +95,7 @@ public class BitmapUtil {
         if (bytes.length > maxImageSize) {
           throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
         }
-        Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
+        Log.d(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
         return new ScaleResult(bytes, scaledBitmap.getWidth(), scaledBitmap.getHeight());
       } finally {
         if (scaledBitmap != null) scaledBitmap.recycle();
